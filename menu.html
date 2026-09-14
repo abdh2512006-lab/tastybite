@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TastyBite | قائمة الطعام</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0b0d0e;
+            color: white;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 70px;
+            background: #111415;
+            border-bottom: 1px solid #292d2e;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff7a00;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #ff7a00;
+        }
+
+        .cart-button {
+            background: #ff7a00;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+            border-radius: 9px;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .menu-hero {
+            min-height: 300px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.65),
+                    rgba(0,0,0,.8)
+                ),
+                url("images/hero.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-hero h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .menu-hero h1 span {
+            color: #ff7a00;
+        }
+
+        .menu-hero p {
+            color: #ccc;
+            font-size: 18px;
+        }
+
+
+        /* ================= CATEGORY NAV ================= */
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+
+            padding: 30px 5%;
+
+            flex-wrap: wrap;
+        }
+
+        .category {
+            padding: 11px 22px;
+
+            border: 1px solid #333;
+            border-radius: 30px;
+
+            color: #ccc;
+
+            text-decoration: none;
+
+            transition: .3s;
+        }
+
+        .category:hover,
+        .category.active {
+            background: #ff7a00;
+            border-color: #ff7a00;
+            color: white;
+        }
+
+
+        /* ================= MENU ================= */
+
+        .menu-section {
+            width: 86%;
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 35px 0 70px;
+        }
+
+        .section-title {
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-title h2 span {
+            color: #ff7a00;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .product {
+            background: #151819;
+
+            border: 1px solid #292d2e;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            transition: .3s;
+        }
+
+        .product:hover {
+            transform: translateY(-6px);
+
+            border-color: #ff7a00;
+        }
+
+        .product img {
+            width: 100%;
+            height: 190px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+            font-size: 19px;
+        }
+
+        .description {
+            color: #888;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            min-height: 45px;
+        }
+
+        .product-bottom {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 18px;
+        }
+
+        .price {
+            color: #ff7a00;
+
+            font-size: 19px;
+
+            font-weight: bold;
+        }
+
+        .add {
+            border: none;
+
+            background: #ff7a00;
+
+            color: white;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            transition: .2s;
+        }
+
+        .add:hover {
+            background: #ff8c1a;
+
+            transform: scale(1.05);
+        }
+
+
+        /* ================= DIVIDER ================= */
+
+        .divider {
+            width: 86%;
+            max-width: 1250px;
+
+            height: 1px;
+
+            margin: 10px auto;
+
+            background: #292d2e;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #111415;
+
+            border-top: 1px solid #292d2e;
+
+            padding: 30px 7%;
+
+            text-align: center;
+
+            color: #777;
+        }
+
+        footer strong {
+            color: #ff7a00;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 1000px) {
+
+            .products {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .products {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .menu-hero h1 {
+                font-size: 38px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .menu-section {
+                width: 92%;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product img {
+                height: 220px;
+            }
+
+            .menu-hero {
+                min-height: 250px;
+            }
+
+            .menu-hero h1 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            🍴 <span>Tasty</span>Bite
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">
+                    الرئيسية
+                </a>
+            </li>
+
+            <li>
+                <a href="menu.html" class="active">
+                    القائمة
+                </a>
+            </li>
+
+            <li>
+                <a href="cart.html">
+                    السلة
+                </a>
+            </li>
+
+        </ul>
+
+        <a href="cart.html" class="cart-button">
+            🛒 السلة
+        </a>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="menu-hero">
+
+        <div>
+
+            <h1>
+                قائمة <span>الطعام</span>
+            </h1>
+
+            <p>
+                اختر وجبتك المفضلة واستمتع بطعم لا يُنسى
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <div class="categories">
+
+        <a href="#foods" class="category active">
+            🍔 الوجبات
+        </a>
+
+        <a href="#desserts" class="category">
+            🍰 الحلويات
+        </a>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ==================== FOODS ====================== -->
+    <!-- ================================================= -->
+
+    <section class="menu-section" id="foods">
+
+        <div class="section-title">
+
+            <h2>
+                🍔 الوجبات <span>الرئيسية</span>
+            </h2>
+
+            <p>
+                أشهى الوجبات المحضرة يوميًا
+            </p>
+
+        </div>
+
+
+        <div class="products">
+
+
+            <!-- 1 -->
+
+            <div class="product">
+
+                <img src="images/1/burger.jpg"
+                     alt="برغر كلاسيك">
+
+                <div class="product-info">
+
+                    <h3>برغر كلاسيك</h3>
+
+                    <p class="description">
+                        لحم مشوي، جبن، خس وطماطم مع صلصة خاصة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            35 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('برغر كلاسيك',35)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+
+            <div class="product">
+
+                <img src="images/1/pizza.jpg"
+                     alt="بيتزا بيبروني">
+
+                <div class="product-info">
+
+                    <h3>بيتزا بيبروني</h3>
+
+                    <p class="description">
+                        عجينة طازجة، جبن ذائب وشرائح بيبروني.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            45 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('بيتزا بيبروني',45)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div class="product">
+
+                <img src="images/1/fries.jpg"
+                     alt="بطاطس مقلية">
+
+                <div class="product-info">
+
+                    <h3>بطاطس مقلية</h3>
+
+                    <p class="description">
+                        بطاطس ذهبية ومقرمشة مع توابل خاصة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            15 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('بطاطس مقلية',15)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+
+            <div class="product">
+
+                <img src="images/1/chicken.jpg"
+                     alt="دجاج مقرمش">
+
+                <div class="product-info">
+
+                    <h3>دجاج مقرمش</h3>
+
+                    <p class="description">
+                        قطع دجاج مقرمشة مع صلصة خاصة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            40 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('دجاج مقرمش',40)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div class="product">
+
+                <img src="images/1/pasta.jpg"
+                     alt="باستا">
+
+                <div class="product-info">
+
+                    <h3>باستا كريمية</h3>
+
+                    <p class="description">
+                        باستا طازجة مع صلصة كريمية وتوابل.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            40 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('باستا كريمية',40)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 6 -->
+
+            <div class="product">
+
+                <img src="images/1/chicken-burger.jpg"
+                     alt="برغر الدجاج">
+
+                <div class="product-info">
+
+                    <h3>برغر الدجاج</h3>
+
+                    <p class="description">
+                        دجاج مقرمش مع الخس والجبن والصلصة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            30 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('برغر الدجاج',30)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 7 -->
+
+            <div class="product">
+
+                <img src="images/1/tacos.jpg"
+                     alt="تاكوس">
+
+                <div class="product-info">
+
+                    <h3>تاكوس الدجاج</h3>
+
+                    <p class="description">
+                        تاكوس محشو بالدجاج والجبن والصلصة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            35 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('تاكوس الدجاج',35)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 8 -->
+
+            <div class="product">
+
+                <img src="images/1/wings.jpg"
+                     alt="أجنحة الدجاج">
+
+                <div class="product-info">
+
+                    <h3>أجنحة الدجاج</h3>
+
+                    <p class="description">
+                        أجنحة دجاج متبلة ومقرمشة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            32 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('أجنحة الدجاج',32)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 9 -->
+
+            <div class="product">
+
+                <img src="images/1/hotdog.jpg"
+                     alt="هوت دوغ">
+
+                <div class="product-info">
+
+                    <h3>هوت دوغ</h3>
+
+                    <p class="description">
+                        هوت دوغ مع الجبن والبصل والصلصة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            28 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('هوت دوغ',28)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 10 -->
+
+            <div class="product">
+
+                <img src="images/1/fried-chicken.jpg"
+                     alt="دجاج مقلي">
+
+                <div class="product-info">
+
+                    <h3>دجاج مقلي</h3>
+
+                    <p class="description">
+                        قطع دجاج ذهبية مع البطاطس وصلصة اختيارية.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            42 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('دجاج مقلي',42)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="divider"></div>
+
+
+    <!-- ================================================= -->
+    <!-- =================== DESSERTS ==================== -->
+    <!-- ================================================= -->
+
+    <section class="menu-section" id="desserts">
+
+        <div class="section-title">
+
+            <h2>
+                🍰 <span>الحلويات</span>
+            </h2>
+
+            <p>
+                اختم وجبتك بشيء حلو
+            </p>
+
+        </div>
+
+
+        <div class="products">
+
+
+            <!-- 1 -->
+
+            <div class="product">
+
+                <img src="images/2/cheesecake.jpg"
+                     alt="تشيز كيك">
+
+                <div class="product-info">
+
+                    <h3>تشيز كيك</h3>
+
+                    <p class="description">
+                        تشيز كيك كريمي مع صوص الفراولة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            25 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('تشيز كيك',25)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+
+            <div class="product">
+
+                <img src="images/2/brownie.jpg"
+                     alt="براوني">
+
+                <div class="product-info">
+
+                    <h3>براوني شوكولاتة</h3>
+
+                    <p class="description">
+                        براوني غني بالشوكولاتة وقوامه طري.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            20 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('براوني شوكولاتة',20)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+
+            <div class="product">
+
+                <img src="images/2/pancakes.jpg"
+                     alt="بان كيك">
+
+                <div class="product-info">
+
+                    <h3>بان كيك</h3>
+
+                    <p class="description">
+                        بان كيك طري مع العسل والفواكه.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            22 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('بان كيك',22)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+
+            <div class="product">
+
+                <img src="images/2/chocolate-cake.jpg"
+                     alt="كيك الشوكولاتة">
+
+                <div class="product-info">
+
+                    <h3>كيك الشوكولاتة</h3>
+
+                    <p class="description">
+                        طبقات من كيك الشوكولاتة والكريمة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            25 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('كيك الشوكولاتة',25)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5 -->
+
+            <div class="product">
+
+                <img src="images/2/donut.jpg"
+                     alt="دونات">
+
+                <div class="product-info">
+
+                    <h3>دونات شوكولاتة</h3>
+
+                    <p class="description">
+                        دونات طرية مغطاة بالشوكولاتة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            12 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('دونات شوكولاتة',12)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 6 -->
+
+            <div class="product">
+
+                <img src="images/2/ice-cream.jpg"
+                     alt="آيس كريم">
+
+                <div class="product-info">
+
+                    <h3>آيس كريم</h3>
+
+                    <p class="description">
+                        آيس كريم كريمي بنكهات متعددة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            18 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('آيس كريم',18)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 7 -->
+
+            <div class="product">
+
+                <img src="images/2/waffle.jpg"
+                     alt="وافل">
+
+                <div class="product-info">
+
+                    <h3>وافل</h3>
+
+                    <p class="description">
+                        وافل مقرمش مع الشوكولاتة والفواكه.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            24 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('وافل',24)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 8 -->
+
+            <div class="product">
+
+                <img src="images/2/tiramisu.jpg"
+                     alt="تيراميسو">
+
+                <div class="product-info">
+
+                    <h3>تيراميسو</h3>
+
+                    <p class="description">
+                        حلوى إيطالية بطبقات القهوة والكريمة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            28 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('تيراميسو',28)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 9 -->
+
+            <div class="product">
+
+                <img src="images/2/crepe.jpg"
+                     alt="كريب">
+
+                <div class="product-info">
+
+                    <h3>كريب شوكولاتة</h3>pp
+
+                    <p class="description">
+                        كريب طازج محشو بالشوكولاتة والموز.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            23 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('كريب شوكولاتة',23)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 10 -->
+
+            <div class="product">
+
+                <img src="images/2/cookies.jpg"
+                     alt="كوكيز">
+
+                <div class="product-info">
+
+                    <h3>كوكيز الشوكولاتة</h3>
+
+                    <p class="description">
+                        كوكيز طازج مع قطع الشوكولاتة.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            15 DH
+                        </span>
+
+                        <button class="add"
+                            onclick="addToCart('كوكيز الشوكولاتة',15)">
+                            + أضف
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <strong>TastyBite</strong>
+
+        <p>
+            © 2026 جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function addToCart(name, price) {
+
+            let cart =
+                JSON.parse(
+                    localStorage.getItem("cart")
+                ) || [];
+
+
+            cart.push({
+
+                name: name,
+
+                price: price
+
+            });
+
+
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(cart)
+            );
+
+
+            alert(
+                "تمت إضافة " +
+                name +
+                " إلى السلة 🛒"
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
